@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" />
+
+	<title>Hello Prime!</title>
+</h:head>
+<h:body>
+
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<h1>ProgBooks</h1>
+		</div>
+		<div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Books</a></li>
+					<li><a href="#">Orders</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span2" style="background-color: #BBD8E9; height: 500px;">
+				<h:outputLink value="#{action.redirect}" target="_blank">Books</h:outputLink>
+				<br />
+				<h:outputLink value="#{action.redirect}" target="_blank">Orders</h:outputLink>
+			</div>
+			<div class="span10">
+				<h3>Our Library:</h3>
+				<p:outputLabel value="#{homeBean.ejbMessage}"></p:outputLabel>
+				<div class="container">
+					<div class="row-fluid">
+						<div class="offset3">
+							<p:galleria value="#{homeBean.booksImages}" var="image"
+								panelWidth="320" panelHeight="400" showCaption="true">
+								<p:graphicImage value="/resources/images/#{image}"
+									alt="Image Description for #{image}" title="#{image}" />
+							</p:galleria>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row-fluid" style="padding-top: 20px;">
+			<address>
+				<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
+				Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123) 456-7890
+			</address>
+
+			<address>
+				<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
+			</address>
+		</div>
+	</div>
+
+
+</h:body>
+</html>
