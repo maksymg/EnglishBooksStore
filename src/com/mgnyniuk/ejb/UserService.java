@@ -13,7 +13,7 @@ import com.mgnyniuk.jpa.User;
 @Stateless
 public class UserService {
 
-	public User find(String username, String password) {
+	public User find(String email, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
