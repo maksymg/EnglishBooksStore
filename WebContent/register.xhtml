@@ -6,8 +6,7 @@
 <h:head>
 	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 		type="text/css" />
-
-	<title>Books</title>
+	<title>Login</title>
 </h:head>
 <h:body>
 	<h:form>
@@ -29,9 +28,20 @@
 					</ul>
 				</div>
 			</div>
-
-
-
+			<h:outputLabel for="username" value="Username:" />
+			<h:inputText id="username" value="#{userBean.username}" />
+			<h:message for="username" />
+			<br />
+			<h:outputLabel for="password" value="Password:" />
+			<h:inputSecret id="password" value="#{userBean.password}" />
+			<h:message for="password" />
+			<br />
+			<h:outputLabel for="email" value="Email:" />
+			<h:inputText id="email" value="#{userBean.email}" />
+			<h:message for="email" />
+			<br />
+			<h:commandButton value="Register" action="#{userBean.register}" />
+			<h:messages globalOnly="true" />
 			<div class="row-fluid" style="padding-top: 20px;">
 				<address>
 					<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />

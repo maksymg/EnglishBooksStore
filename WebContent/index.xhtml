@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
@@ -11,54 +12,62 @@
 </h:head>
 <h:body>
 
-
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<h1>ProgBooks</h1>
-		</div>
-		<div class="navbar">
-			<div class="navbar-inner">
-				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Books</a></li>
-					<li><a href="#">Orders</a></li>
-				</ul>
+	<h:form>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<h1>ProgBooks</h1>
+				<h:outputText value="#{userBean.username}"></h:outputText>
 			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span2" style="background-color: #BBD8E9; height: 500px;">
-				<h:outputLink value="#{action.redirect}" target="_blank">Books</h:outputLink>
-				<br />
-				<h:outputLink value="#{action.redirect}" target="_blank">Orders</h:outputLink>
+			<div class="navbar">
+				<div class="navbar-inner">
+					<ul class="nav">
+						<li><h:link value="Home" outcome="index" /></li>
+						<li><h:link value="Books" outcome="books" /></li>
+						<li><h:link value="Orders" outcome="orders" /></li>
+						<li><h:link value="About" outcome="about" /></li>
+						<li><h:link value="Admin" outcome="admin" /></li>
+						<li><h:link value="Cart" outcome="cart" /></li>
+						<li><h:link value="Login" outcome="login" /></li>
+						<li><h:link value="Register" outcome="register" /></li>
+					</ul>
+				</div>
 			</div>
-			<div class="span10">
-				<h3>Our Library:</h3>
-				<p:outputLabel value="#{homeBean.ejbMessage}"></p:outputLabel>
-				<div class="container">
-					<div class="row-fluid">
-						<div class="offset3">
-							<p:galleria value="#{homeBean.booksImages}" var="image"
-								panelWidth="320" panelHeight="400" showCaption="true">
-								<p:graphicImage value="/resources/images/#{image}"
-									alt="Image Description for #{image}" title="#{image}" />
-							</p:galleria>
+			<div class="row-fluid">
+				<div class="span10">
+					<h3>Our Library:</h3>
+					<div class="container">
+						<div class="row-fluid">
+							<div class="offset3">
+								<p:dataGrid var="book" value="#{homeBean.books}" columns="3"
+									rows="12">
+									<p:column>
+										<p:panel header="#{book.title}">
+											<h:panelGrid columns="1">
+												<p:graphicImage value="#{bookImages.image}">
+													<f:param name="id" value="#{book.id}" />
+												</p:graphicImage>
+												<h:outputText value="#{book.author}" />
+											</h:panelGrid>
+										</p:panel>
+									</p:column>
+								</p:dataGrid>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="row-fluid" style="padding-top: 20px;">
+				<address>
+					<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
+					Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123) 456-7890
+				</address>
+
+				<address>
+					<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
+				</address>
+			</div>
 		</div>
-		<div class="row-fluid" style="padding-top: 20px;">
-			<address>
-				<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
-				Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123) 456-7890
-			</address>
 
-			<address>
-				<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
-			</address>
-		</div>
-	</div>
-
-
+	</h:form>
 </h:body>
 </html>

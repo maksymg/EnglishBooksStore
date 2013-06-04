@@ -5,20 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.mgnyniuk.jpa.Book;
+
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class HomeBean implements Serializable {
 
 	private String ejbMessage;
 	private HomeFunc homeFunc;
 
 	private List<String> booksImages;
+	private List<Book> books;
 
 	public List<String> getBooksImages() {
 		return booksImages;
@@ -29,6 +31,9 @@ public class HomeBean implements Serializable {
 		homeFunc = (HomeFunc) InitialContext.doLookup("java:module/HomeFunc");
 		ejbMessage = homeFunc.getMessage();
 		
+		books = homeFunc.findAllBooks();
+		
+		System.out.println(books.size());
 		booksImages = new ArrayList<String>();
 
 		for (int i = 1; i <= 3; i++) {
@@ -43,4 +48,13 @@ public class HomeBean implements Serializable {
 	public void setEjbMessage(String ejbMessage) {
 		this.ejbMessage = ejbMessage;
 	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+	
 }
