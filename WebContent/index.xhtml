@@ -4,68 +4,79 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-		type="text/css" />
+<f:view locale="#{language.locale}">
+	<h:head>
+		<link href="resources/bootstrap/css/bootstrap.min.css"
+			rel="stylesheet" type="text/css" />
 
-	<title>Hello Prime!</title>
-</h:head>
-<h:body>
+		<title>Hello Prime!</title>
+	</h:head>
+	<h:body>
 
-	<h:form>
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<h1>ProgBooks</h1>
-				<h:outputText value="#{userBean.username}"></h:outputText>
-			</div>
-			<div class="navbar">
-				<div class="navbar-inner">
-					<ul class="nav">
-						<li><h:link value="Home" outcome="index" /></li>
-						<li><h:link value="Books" outcome="books" /></li>					
-						<li><h:link value="About" outcome="about" /></li>
-						<li><h:link value="Login" outcome="login" /></li>
-						<li><h:link value="Register" outcome="register" /></li>
-						<li><h:link value="Admin" outcome="admin/index" /></li>
-					</ul>
+		<h:form>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<h1>ProgBooks</h1>
+					<h:outputText value="#{userBean.username}"></h:outputText>
 				</div>
-			</div>
-			<div class="row-fluid">
-				<div class="span10">
-					<h3>Our Library:</h3>
-					<div class="container">
-						<div class="row-fluid">
-							<div class="offset3">
-								<p:dataGrid var="book" value="#{homeBean.books}" columns="3"
-									rows="12">
-									<p:column>
-										<p:panel header="#{book.title}">
-											<h:panelGrid columns="1">
-												<p:graphicImage value="#{bookImages.image}">
-													<f:param name="id" value="#{book.id}" />
-												</p:graphicImage>
-												<h:outputText value="#{book.author}" />
-											</h:panelGrid>
-										</p:panel>
-									</p:column>
-								</p:dataGrid>
+				<div class="navbar">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li><h:link value="Home" outcome="index" /></li>
+							<li><h:link value="Books" outcome="books" /></li>
+							<li><h:link value="About" outcome="about" /></li>
+							<li><h:link value="Login" outcome="login" /></li>
+							<li><h:link value="Register" outcome="register" /></li>
+							<li><h:link value="#{i18n['admin']}" outcome="admin/index" /></li>
+						</ul>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span10">
+						<h:panelGrid columns="2">
+ 
+		Language : 
+		<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+								valueChangeListener="#{language.countryLocaleCodeChanged}">
+								<f:selectItems value="#{language.countriesInMap}" />
+							</h:selectOneMenu>
+
+						</h:panelGrid>
+						<h3>Our Library:</h3>
+						<div class="container">
+							<div class="row-fluid">
+								<div class="offset3">
+									<p:dataGrid var="book" value="#{homeBean.books}" columns="3"
+										rows="12">
+										<p:column>
+											<p:panel header="#{book.title}">
+												<h:panelGrid columns="1">
+													<p:graphicImage value="#{bookImages.image}">
+														<f:param name="id" value="#{book.id}" />
+													</p:graphicImage>
+													<h:outputText value="#{book.author}" />
+												</h:panelGrid>
+											</p:panel>
+										</p:column>
+									</p:dataGrid>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row-fluid" style="padding-top: 20px;">
-				<address>
-					<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
-					Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123) 456-7890
-				</address>
+				<div class="row-fluid" style="padding-top: 20px;">
+					<address>
+						<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
+						Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123) 456-7890
+					</address>
 
-				<address>
-					<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
-				</address>
+					<address>
+						<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
+					</address>
+				</div>
 			</div>
-		</div>
 
-	</h:form>
-</h:body>
+		</h:form>
+	</h:body>
+</f:view>
 </html>
