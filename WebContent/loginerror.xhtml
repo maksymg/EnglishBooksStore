@@ -6,15 +6,12 @@
 <h:head>
 	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 		type="text/css" />
-	<title>Login</title>
+	<title>Login Error</title>
 </h:head>
 <h:body>
-	<p:panel header="Login From">
-		<form method="POST" action="j_security_check">
-			Username: <input type="text" name="j_username" /> Password: <input
-				type="password" name="j_password" /> <input type="submit"
-				value="Login" /> <input type="reset" value="Reset" />
-		</form>
+	<p:panel header="Login Error">
+            Sorry, you made an Error. <br />Please try again: <a
+			href="#{facesContext.externalContext.requestContextPath}/">Homepage</a>
 	</p:panel>
 </h:body>
 </html>

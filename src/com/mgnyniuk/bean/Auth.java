@@ -60,7 +60,7 @@ public class Auth {
 				.getRequest();
 
 		try {
-			request.login(email, password);
+			request.login("Max", "12345");
 			User user = userService.find(email, password);
 			externalContext.getSessionMap().put("user", user);
 			externalContext.redirect(originalURL);
@@ -93,7 +93,7 @@ public class Auth {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
+	
 }
+
