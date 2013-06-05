@@ -4,17 +4,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-		type="text/css" />
 	<title>Login</title>
 </h:head>
 <h:body>
-	<p:panel header="Login From">
-		<form method="POST" action="j_security_check">
-			Username: <input type="text" name="j_username" /> Password: <input
-				type="password" name="j_password" /> <input type="submit"
-				value="Login" /> <input type="reset" value="Reset" />
-		</form>
-	</p:panel>
+	<h:form>
+		<h:outputLabel for="username" value="Username" />
+		<h:inputText id="username" value="#{auth.username}" required="true" />
+		<h:message for="username" />
+		<br />
+		<h:outputLabel for="password" value="Password" />
+		<h:inputSecret id="password" value="#{auth.password}" required="true" />
+		<h:message for="password" />
+		<br />
+		<h:commandButton value="Login" action="#{auth.login}" />
+		<h:messages globalOnly="true" />
+	</h:form>
 </h:body>
 </html>
