@@ -22,11 +22,12 @@
 				<div class="navbar">
 					<div class="navbar-inner">
 						<ul class="nav">
-							<li><h:link value="Home" outcome="index" /></li>
-							<li><h:link value="Books" outcome="books" /></li>
-							<li><h:link value="About" outcome="about" /></li>
-							<li><h:link value="Login" outcome="login" /></li>
-							<li><h:link value="Register" outcome="register" /></li>
+							<li><h:link value="#{i18n['home']}" outcome="index" /></li>
+							<li><h:link value="#{i18n['books']}" outcome="books" /></li>
+							<li><h:link value="#{i18n['about_company']}" outcome="about_company" /></li>
+							<li><h:link value="#{i18n['about_service']}" outcome="about_service" /></li>
+							<li><h:link value="#{i18n['login']}" outcome="login" /></li>
+							<li><h:link value="#{i18n['register']}" outcome="register" /></li>
 							<li><h:link value="#{i18n['admin']}" outcome="admin/index" /></li>
 						</ul>
 					</div>
