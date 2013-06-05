@@ -6,6 +6,4 @@
         <role-name>admin</role-name>
         <group-name>admin</group-name>
     </security-role-mapping>
-
-  
 </glassfish-web-app>
