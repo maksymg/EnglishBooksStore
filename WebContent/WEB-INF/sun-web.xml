@@ -4,10 +4,10 @@
 	<context-root>/EnglishBookStore</context-root>
 	<security-role-mapping>
 		<role-name>admin</role-name>
-		<group-name>admin</group-name>
+		<group-name>admins</group-name>
 	</security-role-mapping>
 	<security-role-mapping>
 		<role-name>user</role-name>
-		<group-name>user</group-name>
+		<group-name>users</group-name>
 	</security-role-mapping>
 </sun-web-app>
