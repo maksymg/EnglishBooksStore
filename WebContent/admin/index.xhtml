@@ -34,31 +34,94 @@
 				</div>
 
 				<div class="row-fluid">
-					<h:outputLabel for="title" value="Title:" />
-					<h:inputText id="title" value="#{adminBean.title}" />
-					<h:message for="title" />
+					<p:tabView id="tabView">
 
-					<h:outputLabel for="author" value="Author:" />
-					<h:inputText id="author" value="#{adminBean.author}" />
-					<h:message for="author" />
+						<p:tab id="tab1" title="Adding Books">
+							<h:outputLabel for="title" value="Title:" />
+							<h:inputText id="title" value="#{adminBean.title}" />
+							<h:message for="title" />
 
-					<h:outputLabel for="description" value="Description:" />
-					<h:inputText id="description" value="#{adminBean.description}" />
-					<h:message for="description" />
+							<h:outputLabel for="author" value="Author:" />
+							<h:inputText id="author" value="#{adminBean.author}" />
+							<h:message for="author" />
 
-					<h:outputLabel for="price" value="Price:" />
-					<h:inputText id="price" value="#{adminBean.price}" />
-					<h:message for="price" />
+							<h:outputLabel for="description" value="Description:" />
+							<h:inputText id="description" value="#{adminBean.description}" />
+							<h:message for="description" />
 
-					<h:messages globalOnly="true" />
+							<h:outputLabel for="price" value="Price:" />
+							<h:inputText id="price" value="#{adminBean.price}" />
+							<h:message for="price" />
 
-					<p:fileUpload fileUploadListener="#{adminBean.handleFileUpload}"
-						mode="advanced" update="messages" auto="false"
-						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-					<p:growl id="messages" showDetail="true" />
+							<h:messages globalOnly="true" />
 
-					<br />
-					<p:commandButton value="Add" action="#{adminBean.add}" />
+							<p:fileUpload fileUploadListener="#{adminBean.handleFileUpload}"
+								mode="advanced" update="messages" auto="false"
+								allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							<p:growl id="messages" showDetail="true" />
+
+							<br />
+							<p:commandButton value="Add" action="#{adminBean.add}" />
+
+						</p:tab>
+
+						<p:tab id="tab2" title="Cart Control">
+							<p:dataTable var="book" value="#{cartBean.cart.bookList}">
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookCover']}" />
+									</f:facet>
+									<p:graphicImage width="100px" value="#{bookImages.image}">
+										<f:param name="id" value="#{book.id}" />
+									</p:graphicImage>
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookTitle']}" />
+									</f:facet>
+									<h:outputText value="#{book.title}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookDescription']}" />
+									</f:facet>
+									<h:outputText value="#{book.description}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookAuthor']}" />
+									</f:facet>
+									<h:outputText value="#{book.author}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookPrice']}" />
+									</f:facet>
+									<h:outputText value="#{book.price}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['tableControl']}" />
+									</f:facet>
+									<p:commandButton value="#{i18n['deleteButton']}"
+										actionListener="#{cartBean.deleteBookFromCart(book)}"
+										update="@form" />
+								</p:column>
+
+							</p:dataTable>
+
+						</p:tab>
+
+						<p:tab id="tab3" title="Godfather Part III">
+
+						</p:tab>
+
+					</p:tabView>
 
 
 					<div class="row-fluid" style="padding-top: 20px;">

@@ -33,8 +33,8 @@
 									outcome="about_company" /></li>
 							<li><h:link value="#{i18n['about_service']}"
 									outcome="about_service" /></li>
-							<li><h:link value="Cart[#{cartBean.size}]"
-									outcome="#{i18n['cart']}" /></li>
+							<li><h:link value="#{i18n['cart']}[#{cartBean.size}]"
+									outcome="cart" /></li>
 							<li><h:commandLink action="#{auth.logout}"
 									value="#{i18n['logout']}" /></li>
 						</ul>
@@ -82,9 +82,9 @@
 
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="#{i18n['bookControl']}" />
+								<h:outputText value="#{i18n['tableControl']}" />
 							</f:facet>
-							<p:commandButton value="Delete"
+							<p:commandButton value="#{i18n['deleteButton']}"
 								actionListener="#{cartBean.deleteBookFromCart(book)}"
 								update="@form" />
 						</p:column>

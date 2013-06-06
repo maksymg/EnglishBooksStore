@@ -55,10 +55,11 @@
 										<p:column>
 											<p:panel header="#{book.title}">
 												<h:panelGrid columns="1">
-													<p:graphicImage value="#{bookImages.image}">
+													<p:graphicImage width="100px" value="#{bookImages.image}">
 														<f:param name="id" value="#{book.id}" />
 													</p:graphicImage>
-													<h:outputText value="#{book.author}" />
+													<h:outputText value="#{i18n['bookAuthor']}: #{book.author}" />
+													<h:outputText value="#{i18n['bookPrice']}: #{book.price}" />
 												</h:panelGrid>
 											</p:panel>
 										</p:column>
