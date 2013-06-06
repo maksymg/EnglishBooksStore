@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Query;
+import javax.persistence.Table;
 
 @Entity
 @NamedQueries(value = { @NamedQuery(name = "Book.findAll", query = "select bk from Book bk") })
@@ -117,5 +118,5 @@ public class Book implements Serializable {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
-	
+
 }
