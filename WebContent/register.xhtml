@@ -2,55 +2,68 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-		type="text/css" />
-	<title>Login</title>
-</h:head>
-<h:body>
-	<h:form>
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<h1>ProgBooks</h1>
-			</div>
-			<div class="navbar">
-				<div class="navbar-inner">
-					<ul class="nav">
-						<li><h:link value="Home" outcome="index" /></li>
-						<li><h:link value="Books" outcome="books" /></li>					
-						<li><h:link value="About" outcome="about" /></li>
-						<li><h:link value="Login" outcome="login" /></li>
-						<li><h:link value="Register" outcome="register" /></li>
-						<li><h:link value="Admin" outcome="admin/index" /></li>
-					</ul>
+<f:view locale="#{language.locale}">
+	<h:head>
+		<link href="resources/bootstrap/css/bootstrap.min.css"
+			rel="stylesheet" type="text/css" />
+		<title>Register</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<h1>ProgBooks</h1>
+				</div>
+				<div class="row-fluid">
+					<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+						valueChangeListener="#{language.countryLocaleCodeChanged}">
+						<f:selectItems value="#{language.countriesInMap}" />
+					</h:selectOneMenu>
+				</div>
+				<div class="navbar">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li><h:link value="#{i18n['home']}" outcome="index" /></li>
+							<li><h:link value="#{i18n['books']}" outcome="books" /></li>
+							<li><h:link value="#{i18n['about_company']}"
+									outcome="about_company" /></li>
+							<li><h:link value="#{i18n['about_service']}"
+									outcome="about_service" /></li>
+							<li><h:link value="#{i18n['login']}" outcome="login" /></li>
+							<li><h:link value="#{i18n['register']}" outcome="register" /></li>
+							<li><h:link value="#{i18n['admin']}" outcome="admin/index" /></li>
+						</ul>
+					</div>
+				</div>
+				<h:outputLabel for="username" value="#{i18n['username']}" />
+				<h:inputText id="username" value="#{userBean.username}" />
+				<h:message for="username" />
+				<br />
+				<h:outputLabel for="password" value="#{i18n['password']}" />
+				<h:inputSecret id="password" value="#{userBean.password}" />
+				<h:message for="password" />
+				<br />
+				<h:outputLabel for="email" value="#{i18n['email']}" />
+				<h:inputText id="email" value="#{userBean.email}" />
+				<h:message for="email" />
+				<br />
+				<h:commandButton value="#{i18n['register']}"
+					action="#{userBean.register}" />
+				<h:messages globalOnly="true" />
+				<div class="row-fluid" style="padding-top: 20px;">
+					<address>
+						<strong>#{i18n['company']}</strong><br />#{i18n['street']}<br />
+						#{i18n['city_contry']} <br /> <abbr title="Phone">#{i18n['telephon_abr']}</abbr>#{i18n['telephone']}
+					</address>
+
+					<address>
+						<strong>#{i18n['author']}</strong><br /> <a href="mailto:#">#{i18n['email']}</a>
+					</address>
 				</div>
 			</div>
-			<h:outputLabel for="username" value="Username:" />
-			<h:inputText id="username" value="#{userBean.username}" />
-			<h:message for="username" />
-			<br />
-			<h:outputLabel for="password" value="Password:" />
-			<h:inputSecret id="password" value="#{userBean.password}" />
-			<h:message for="password" />
-			<br />
-			<h:outputLabel for="email" value="Email:" />
-			<h:inputText id="email" value="#{userBean.email}" />
-			<h:message for="email" />
-			<br />
-			<h:commandButton value="Register" action="#{userBean.register}" />
-			<h:messages globalOnly="true" />
-			<div class="row-fluid" style="padding-top: 20px;">
-				<address>
-					<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
-					Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123) 456-7890
-				</address>
-
-				<address>
-					<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
-				</address>
-			</div>
-		</div>
-	</h:form>
-</h:body>
+		</h:form>
+	</h:body>
+</f:view>
 </html>
