@@ -33,6 +33,9 @@ public class Book implements Serializable {
 	@Column
 	private byte[] cover;
 	
+	@Column
+	private int orderid;
+	
 	public Book() {
 		
 	}
@@ -68,14 +71,6 @@ public class Book implements Serializable {
 		this.author = author;
 	}
 
-	public String getDescrition() {
-		return description;
-	}
-
-	public void setDescrition(String description) {
-		this.description = description;
-	}
-
 	public Double getPrice() {
 		return price;
 	}
@@ -99,4 +94,22 @@ public class Book implements Serializable {
 	public void setCover(byte[] cover) {
 		this.cover = cover;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+	
+	
 }

@@ -18,9 +18,6 @@ public class Order implements Serializable {
 	@Column
 	private int userid;
 	
-	@Column
-	private int bookid;
-	
 	public Order() {
 		
 	}
@@ -29,6 +26,29 @@ public class Order implements Serializable {
 		this.id = id;
 		this.description = description;
 		this.userid = userid;
-		this.bookid = bookid;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 }
