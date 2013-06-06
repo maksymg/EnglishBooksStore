@@ -28,13 +28,13 @@
 						<ul class="nav">
 							<li><h:link value="#{i18n['home']}" outcome="index" /></li>
 							<li><h:link value="#{i18n['books']}" outcome="books" /></li>
-							<li><h:link value="Orders" outcome="orders" /></li>
+							<li><h:link value="#{i18n['orders']}" outcome="orders" /></li>
 							<li><h:link value="#{i18n['about_company']}"
-									outcome="/about_company" /></li>
+									outcome="about_company" /></li>
 							<li><h:link value="#{i18n['about_service']}"
-									outcome="/about_service" /></li>
-							<li><h:link value="Cart[#{cartBean.size}]" outcome="cart" /></li>
-							<li><h:commandLink action="#{auth.logout}" value="Logout" /></li>
+									outcome="about_service" /></li>
+							<li><h:link value="Cart[#{cartBean.size}]" outcome="#{i18n['cart']}" /></li>
+							<li><h:commandLink action="#{auth.logout}" value="#{i18n['logout']}" /></li>
 						</ul>
 					</div>
 				</div>

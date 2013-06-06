@@ -9,15 +9,13 @@
 		<link href="../resources/bootstrap/css/bootstrap.min.css"
 			rel="stylesheet" type="text/css" />
 
-		<title>Hello Prime!</title>
+		<title>About Company</title>
 	</h:head>
 	<h:body>
-
 		<h:form>
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<h1>ProgBooks</h1>
-					<h:outputText value="#{userBean.username}"></h:outputText>
 				</div>
 				<div class="row-fluid">
 					<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
@@ -40,46 +38,20 @@
 						</ul>
 					</div>
 				</div>
-				<div class="row-fluid">
-					<div class="span10">
-						<h3>Our Library:</h3>
-						<div class="container">
-							<div class="row-fluid">
-								<div class="offset3">
-									<p:dataGrid var="book" value="#{homeBean.books}" columns="3"
-										rows="12">
-										<p:column>
-											<p:panel header="#{book.title}">
-												<h:panelGrid columns="1">
-													<p:graphicImage width="100px" value="#{bookImages.image}">
-														<f:param name="id" value="#{book.id}" />
-													</p:graphicImage>
-													<h:outputText value="#{book.author}" />
-													<p:commandButton value="Add to cart" update="@form"
-														actionListener="#{cartBean.addToCart(book)}">
 
-													</p:commandButton>
-												</h:panelGrid>
-											</p:panel>
-										</p:column>
-									</p:dataGrid>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div>Cool Company!</div>
+
 				<div class="row-fluid" style="padding-top: 20px;">
 					<address>
-						<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
-						Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123) 456-7890
+						<strong>#{i18n['company']}</strong><br />#{i18n['street']}<br />
+						#{i18n['city_contry']} <br /> <abbr title="Phone">#{i18n['telephon_abr']}</abbr>#{i18n['telephone']}
 					</address>
 
 					<address>
-						<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
+						<strong>#{i18n['author']}</strong><br /> <a href="mailto:#">#{i18n['email']}</a>
 					</address>
 				</div>
 			</div>
-
 		</h:form>
 	</h:body>
 </f:view>
