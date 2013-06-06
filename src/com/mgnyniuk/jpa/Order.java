@@ -1,31 +1,35 @@
 package com.mgnyniuk.jpa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Order implements Serializable {
-	
+
 	@Id
 	private int id;
-	
+
 	@Column
 	private String description;
-	
-	@Column
-	private int userid;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "username")
+	private User user;
+
+	@ManyToMany(mappedBy = "orderList", cascade = CascadeType.ALL)
+	private List<Book> bookList = new ArrayList<Book>();
+
 	public Order() {
-		
-	}
-	
-	public Order(int id, String description, int userid, int bookid) {
-		this.id = id;
-		this.description = description;
-		this.userid = userid;
+
 	}
 
 	public int getId() {
@@ -44,11 +48,21 @@ public class Order implements Serializable {
 		this.description = description;
 	}
 
-	public int getUserid() {
-		return userid;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+	public List<Book> getBookList() {
+		return bookList;
+	}
+
+	public void setBookList(List<Book> bookList) {
+		this.bookList = bookList;
+	}
+	
+	
 }

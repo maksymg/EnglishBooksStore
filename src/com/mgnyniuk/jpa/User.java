@@ -1,40 +1,44 @@
 package com.mgnyniuk.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
-	
+
 	@Id
-	private int id;
-	
-	@Column
-	private String name;
-	
+	private String username;
+
 	@Column
 	private String password;
-	
+
 	@Column
 	private String email;
 	
+	@OneToMany(mappedBy="user")
+	private List<Order> orderList = new ArrayList<Order>();
+
 	public User() {
-		
+
 	}
-	
-	public User(String name, String password, String email) {
-		this.name = name;
+
+	public User(String username, String password, String email) {
+		this.username = username;
 		this.password = password;
 		this.email = email;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -51,5 +55,13 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
 	}
 }
