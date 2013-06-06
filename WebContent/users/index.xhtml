@@ -44,7 +44,10 @@
 				</div>
 				<div class="row-fluid">
 					<div class="span10">
-						<h3>Our Library:</h3>
+					
+						<h4>#{i18n['instruction']}</h4>
+						<h5>#{i18n['cost']}</h5>
+						
 						<div class="container">
 							<div class="row-fluid">
 								<div class="offset3">
@@ -57,7 +60,7 @@
 														<f:param name="id" value="#{book.id}" />
 													</p:graphicImage>
 													<h:outputText value="#{book.author}" />
-													<p:commandButton value="Add to cart" update="@form"
+													<p:commandButton value="#{i18n['addToCartButton']}" update="@form"
 														actionListener="#{cartBean.addToCart(book)}">
 
 													</p:commandButton>
