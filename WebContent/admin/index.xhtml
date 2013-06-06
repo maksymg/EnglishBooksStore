@@ -27,7 +27,8 @@
 					<div class="navbar-inner">
 						<ul class="nav">
 							<li><h:link value="#{i18n['home']}" outcome="index" /></li>
-							<li><h:commandLink action="#{auth.logout}" value="#{i18n['logout']}" /></li>
+							<li><h:commandLink action="#{auth.logout}"
+									value="#{i18n['logout']}" /></li>
 						</ul>
 					</div>
 				</div>
@@ -62,13 +63,12 @@
 
 					<div class="row-fluid" style="padding-top: 20px;">
 						<address>
-							<strong>ProgBooks, LLC</strong><br /> Vladimirskaya str. 25 <br />
-							Kiev, Ukraine <br /> <abbr title="Phone">P:</abbr> (123)
-							456-7890
+							<strong>#{i18n['company']}</strong><br />#{i18n['street']}<br />
+							#{i18n['city_contry']} <br /> <abbr title="Phone">#{i18n['telephon_abr']}</abbr>#{i18n['telephone']}
 						</address>
 
 						<address>
-							<strong>Maksym Gnyniuk</strong><br /> <a href="mailto:#">mgnyniuk@progbooks.com</a>
+							<strong>#{i18n['author']}</strong><br /> <a href="mailto:#">#{i18n['email']}</a>
 						</address>
 					</div>
 				</div>
