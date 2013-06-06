@@ -5,8 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-		type="text/css" />
+	<link href="../resources/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet" type="text/css" />
 
 	<title>Hello Prime!</title>
 </h:head>
@@ -21,11 +21,14 @@
 			<div class="navbar">
 				<div class="navbar-inner">
 					<ul class="nav">
-						<li><h:link value="Home" outcome="index" /></li>
-						<li><h:link value="Books" outcome="/books" /></li>
+						<li><h:link value="#{i18n['home']}" outcome="index" /></li>
+						<li><h:link value="#{i18n['books']}" outcome="books" /></li>
 						<li><h:link value="Orders" outcome="orders" /></li>
-						<li><h:link value="About" outcome="/about" /></li>
-						<li><h:link value="Cart" outcome="cart" /></li>
+						<li><h:link value="#{i18n['about_company']}"
+								outcome="/about_company" /></li>
+						<li><h:link value="#{i18n['about_service']}"
+								outcome="/about_service" /></li>
+						<li><h:link value="Cart[#{cartBean.size}]" outcome="cart" /></li>
 						<li><h:commandLink action="#{auth.logout}" value="Logout" /></li>
 					</ul>
 				</div>
@@ -45,7 +48,10 @@
 													<f:param name="id" value="#{book.id}" />
 												</p:graphicImage>
 												<h:outputText value="#{book.author}" />
-												<p:commandButton value="Add to cart"></p:commandButton>
+												<p:commandButton value="Add to cart" update="@form"
+													actionListener="#{cartBean.addToCart(book)}">
+
+												</p:commandButton>
 											</h:panelGrid>
 										</p:panel>
 									</p:column>
