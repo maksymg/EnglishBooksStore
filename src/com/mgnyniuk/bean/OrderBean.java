@@ -6,10 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
-import com.mgnyniuk.ejb.OrderService;
 import com.mgnyniuk.jpa.Book;
 import com.mgnyniuk.jpa.Order;
 import com.mgnyniuk.jpa.User;
@@ -19,17 +16,11 @@ import com.mgnyniuk.jpa.User;
 public class OrderBean {
 
 	private Order order;
-	private OrderService orderService;
 
 	@PostConstruct
 	private void init() {
-		try {
-			orderService = (OrderService) InitialContext
-					.doLookup("java:module/OrderService");
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("user"));
 	}
 
 	public void createOrder(List<Book> bookList) {
@@ -39,7 +30,6 @@ public class OrderBean {
 		order.setBookList(bookList);
 		order.setDescription("Order");
 		order.setUser(currentUser);
-		orderService.add(order);
 	}
 
 }
