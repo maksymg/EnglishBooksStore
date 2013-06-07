@@ -5,10 +5,17 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="users")
+@NamedQueries(value = { @NamedQuery(name = "User.findUserByName", query = "select user from User User where user.username = :username") })
 public class User {
 
 	@Id
@@ -19,8 +26,8 @@ public class User {
 
 	@Column
 	private String email;
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	private List<Order> orderList = new ArrayList<Order>();
 
 	public User() {
@@ -31,6 +38,17 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+	}
+	
+	public static User findUserByName(EntityManager em, String username) {
+		Query query = em.createNamedQuery("User.findUserByName");
+		query.setParameter("username", username);
+		List<User> userList = query.getResultList();
+		User user = null;
+		if (userList != null && !userList.isEmpty()) {
+			user = userList.get(0);
+		}
+		return user;
 	}
 
 	public String getUsername() {

@@ -13,11 +13,19 @@ import com.mgnyniuk.jpa.User;
 @Stateless
 public class UserService {
 
-	public User find(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public User findUserByName(String username) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(
+				"em", map);
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		User user = User.findUserByName(em, username);
+		em.getTransaction().commit();
+		em.close();
+		factory.close();
+		return user;
 	}
-	
+
 	public void add(String username, String password, String email) {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(

@@ -25,9 +25,17 @@ public class Auth {
 	private String username;
 	private String password;
 	private String originalURL;
+	private UserService userService;
 
 	@PostConstruct
 	public void init() {
+		try {
+			userService = (UserService) InitialContext
+					.doLookup("java:module/UserService");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ExternalContext externalContext = FacesContext.getCurrentInstance()
 				.getExternalContext();
 		originalURL = (String) externalContext.getRequestMap().get(
@@ -54,8 +62,8 @@ public class Auth {
 
 		try {
 			request.login(username, password);
-			// User user = userService.find(username, password);
-			// externalContext.getSessionMap().put("user", user);
+			User user = userService.findUserByName(username);
+			externalContext.getSessionMap().put("user", user);
 			externalContext.redirect(originalURL);
 		} catch (ServletException e) {
 			// Handle unknown username/password in request.login().
@@ -94,6 +102,5 @@ public class Auth {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
 }

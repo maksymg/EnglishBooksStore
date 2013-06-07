@@ -3,10 +3,11 @@ package com.mgnyniuk.bean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ActionEvent;
+import javax.faces.context.FacesContext;
 
 import com.mgnyniuk.jpa.Book;
 import com.mgnyniuk.jpa.Cart;
+import com.mgnyniuk.jpa.User;
 
 @ManagedBean
 @SessionScoped
@@ -17,6 +18,8 @@ public class CartBean {
 	
 	@PostConstruct
 	public void init() {
+		System.out.println(((User)FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("user")).getUsername());
 		cart = new Cart();
 	}
 	
