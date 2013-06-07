@@ -90,6 +90,10 @@
 						</p:column>
 
 					</p:dataTable>
+
+					<p:commandButton value="Create Order"
+						actionListener="#{orderBean.createOrder(cartBean.cart.bookList)}"
+						update="@form"></p:commandButton>
 				</div>
 
 				<div class="row-fluid" style="padding-top: 20px;">

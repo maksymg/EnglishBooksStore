@@ -8,6 +8,7 @@
 		<class>com.mgnyniuk.jpa.User</class>
 		<class>com.mgnyniuk.jpa.Book</class>
 		<class>com.mgnyniuk.jpa.Order</class>
+		<class>com.mgnyniuk.jpa.OrderBook</class>
 		<properties>
 			<property name="eclipselink.logging.level" value="FINE" />
 
