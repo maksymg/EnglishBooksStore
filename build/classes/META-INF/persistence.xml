@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	version="2.0">
+	<persistence-unit name="em" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<jta-data-source>jdbc/mysqlconnnection</jta-data-source>
+
+		<class>com.mgnyniuk.jpa.User</class>
+		<class>com.mgnyniuk.jpa.Book</class>
+		<class>com.mgnyniuk.jpa.Order</class>
+		<properties>
+			<property name="eclipselink.logging.level" value="FINE" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
