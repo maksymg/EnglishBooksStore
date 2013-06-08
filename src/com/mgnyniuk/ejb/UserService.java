@@ -23,6 +23,8 @@ public class UserService {
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
 		User user = User.findUserByName(em, username);
+		/*User user2 = User.findUserByName(em, "vov");
+		em.remove(user2);*/
 		em.getTransaction().commit();
 		em.close();
 		factory.close();

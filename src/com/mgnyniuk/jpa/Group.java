@@ -2,6 +2,7 @@ package com.mgnyniuk.jpa;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,24 +13,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="groups")
-public class Group implements Serializable{
-	
+@Table(name = "groups")
+public class Group implements Serializable {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	private String groupname;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "username")
 	private User user;
-	
+
 	public Group() {
-		
+
 	}
-	
+
 	public Group(String groupname, User user) {
 		this.groupname = groupname;
 		this.user = user;
