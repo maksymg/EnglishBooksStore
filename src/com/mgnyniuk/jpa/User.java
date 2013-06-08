@@ -16,8 +16,10 @@ import javax.persistence.Query;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
-@NamedQueries(value = { @NamedQuery(name = "User.findUserByName", query = "select user from User User where user.username = :username") })
+@Table(name = "users")
+@NamedQueries(value = {
+		@NamedQuery(name = "User.findAllUser", query = "select user from User user"),
+		@NamedQuery(name = "User.findUserByName", query = "select user from User User where user.username = :username") })
 public class User {
 
 	@Id
@@ -41,7 +43,7 @@ public class User {
 		this.password = password;
 		this.email = email;
 	}
-	
+
 	public static User findUserByName(EntityManager em, String username) {
 		Query query = em.createNamedQuery("User.findUserByName");
 		query.setParameter("username", username);
@@ -51,6 +53,12 @@ public class User {
 			user = userList.get(0);
 		}
 		return user;
+	}
+	
+	public static List<User> findAllUsers(EntityManager em) {
+		Query query = em.createNamedQuery("User.findAllUser");
+		List<User> userList = query.getResultList();
+		return userList;
 	}
 
 	public String getUsername() {

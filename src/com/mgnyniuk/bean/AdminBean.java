@@ -16,7 +16,9 @@ import org.primefaces.event.FileUploadEvent;
 
 import com.mgnyniuk.ejb.BookService;
 import com.mgnyniuk.ejb.LogService;
+import com.mgnyniuk.ejb.UserService;
 import com.mgnyniuk.jpa.Log;
+import com.mgnyniuk.jpa.User;
 
 @ManagedBean
 @SessionScoped
@@ -29,7 +31,11 @@ public class AdminBean {
 	private byte[] cover;
 	private BookService bookService;
 	private LogService logService;
+	private UserService userService;
 	private List<Log> logs;
+	private Date logsFromDate;
+	private Date logsToDate;
+	private List<User> users;
 
 	@PostConstruct
 	private void init() {
@@ -38,7 +44,11 @@ public class AdminBean {
 					.doLookup("java:module/BookService");
 			logService = (LogService) InitialContext
 					.doLookup("java:module/LogService");
+			userService = (UserService) InitialContext
+					.doLookup("java:module/UserService");
+
 			logs = logService.findAllLogs();
+			users = userService.findAllUsers();
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +67,12 @@ public class AdminBean {
 		logService.add(new Log("Book: " + title + " added", new Timestamp(
 				(new Date().getTime()))));
 		return "index";
+	}
+
+	public void findLogsByPeriod() {
+		logs = logService.findLogsByPeriod(
+				new Timestamp(logsFromDate.getTime()),
+				new Timestamp(logsToDate.getTime()));
 	}
 
 	public String getTitle() {
@@ -98,5 +114,29 @@ public class AdminBean {
 	public void setLogs(List<Log> logs) {
 		this.logs = logs;
 	}
-	
+
+	public Date getLogsFromDate() {
+		return logsFromDate;
+	}
+
+	public void setLogsFromDate(Date logsFromDate) {
+		this.logsFromDate = logsFromDate;
+	}
+
+	public Date getLogsToDate() {
+		return logsToDate;
+	}
+
+	public void setLogsToDate(Date logsToDate) {
+		this.logsToDate = logsToDate;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 }

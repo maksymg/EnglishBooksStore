@@ -18,7 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "logs")
-@NamedQueries(value = { @NamedQuery(name = "Log.findAll", query = "select log from Log log") })
+@NamedQueries(value = {
+		@NamedQuery(name = "Log.findAll", query = "select log from Log log"),
+		@NamedQuery(name = "Log.findLogsByPeriod", query = "select log from Log log where log.date between :fromDate and :toDate") })
 public class Log implements Serializable {
 
 	@Id
@@ -39,12 +41,22 @@ public class Log implements Serializable {
 		this.body = body;
 		this.date = date;
 	}
-	
+
 	public static List<Log> findAll(EntityManager em) {
 
 		Query query = em.createNamedQuery("Log.findAll");
 
 		return query.getResultList();
+	}
+
+	public static List<Log> findLogsByPeriod(EntityManager em,
+			Timestamp fromDate, Timestamp toDate) {
+		Query query = em.createNamedQuery("Log.findLogsByPeriod");
+		query.setParameter("fromDate", fromDate);
+		query.setParameter("toDate", toDate);
+		List<Log> logList = query.getResultList();
+
+		return logList;
 	}
 
 	public String getBody() {

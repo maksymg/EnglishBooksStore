@@ -1,5 +1,6 @@
 package com.mgnyniuk.ejb;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,19 @@ public class LogService {
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
 		List<Log> logs = Log.findAll(em);
+		em.getTransaction().commit();
+		em.close();
+		factory.close();
+		return logs;
+	}
+	
+	public List<Log> findLogsByPeriod(Timestamp fromDate, Timestamp toDate) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(
+				"em", map);
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		List<Log> logs = Log.findLogsByPeriod(em, fromDate, toDate);
 		em.getTransaction().commit();
 		em.close();
 		factory.close();
