@@ -9,6 +9,7 @@
 		<class>com.mgnyniuk.jpa.Book</class>
 		<class>com.mgnyniuk.jpa.OrderItem</class>
 		<class>com.mgnyniuk.jpa.Group</class>
+		<class>com.mgnyniuk.jpa.Log</class>
 		<properties>
 			<property name="eclipselink.logging.level" value="FINE" />
 
