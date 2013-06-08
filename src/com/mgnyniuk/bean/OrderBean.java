@@ -12,16 +12,16 @@ import javax.naming.NamingException;
 
 import com.mgnyniuk.ejb.OrderService;
 import com.mgnyniuk.jpa.Book;
-import com.mgnyniuk.jpa.Order;
+import com.mgnyniuk.jpa.OrderItem;
 import com.mgnyniuk.jpa.User;
 
 @ManagedBean
 @RequestScoped
 public class OrderBean {
 
-	private Order order;
+	private OrderItem order;
 	private OrderService orderService;
-	private List<Order> ordersByUser;
+	private List<OrderItem> ordersByUser;
 
 	@PostConstruct
 	private void init() {
@@ -44,7 +44,7 @@ public class OrderBean {
 	public void createOrder(List<Book> bookList) {
 		User currentUser = (User) FacesContext.getCurrentInstance()
 				.getExternalContext().getSessionMap().get("user");
-		order = new Order();
+		order = new OrderItem();
 		order.setBookList(bookList);
 		order.setDescription("Order");
 		order.setUser(currentUser);
@@ -59,11 +59,11 @@ public class OrderBean {
 
 	}
 
-	public List<Order> getOrdersByUser() {
+	public List<OrderItem> getOrdersByUser() {
 		return ordersByUser;
 	}
 
-	public void setOrdersByUser(List<Order> ordersByUser) {
+	public void setOrdersByUser(List<OrderItem> ordersByUser) {
 		this.ordersByUser = ordersByUser;
 	}
 

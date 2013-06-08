@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
-@NamedQueries(value = { @NamedQuery(name = "User.findUserByName", query = "select user from User user where user.username = :username") })
+@NamedQueries(value = { @NamedQuery(name = "User.findUserByName", query = "select user from User User where user.username = :username") })
 public class User {
 
 	@Id
@@ -31,7 +31,7 @@ public class User {
 	private String email;
 
 	@OneToMany(mappedBy = "user")
-	private List<Order> orderList = new ArrayList<Order>();
+	private List<OrderItem> orderList = new ArrayList<OrderItem>();
 
 	public User() {
 
@@ -78,11 +78,11 @@ public class User {
 		this.email = email;
 	}
 
-	public List<Order> getOrderList() {
+	public List<OrderItem> getOrderList() {
 		return orderList;
 	}
 
-	public void setOrderList(List<Order> orderList) {
+	public void setOrderList(List<OrderItem> orderList) {
 		this.orderList = orderList;
 	}
 }

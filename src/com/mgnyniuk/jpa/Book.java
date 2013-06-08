@@ -44,7 +44,7 @@ public class Book implements Serializable {
 	private byte[] cover;
 
 	@ManyToMany(mappedBy="bookList", cascade=CascadeType.ALL)
-	private Collection<Order> orderList;
+	private Collection<OrderItem> orderList;
 
 	public Book() {
 
@@ -114,11 +114,11 @@ public class Book implements Serializable {
 		this.description = description;
 	}
 
-	public Collection<Order> getOrderList() {
+	public Collection<OrderItem> getOrderList() {
 		return orderList;
 	}
 
-	public void setOrderList(Collection<Order> orderList) {
+	public void setOrderList(Collection<OrderItem> orderList) {
 		this.orderList = orderList;
 	}
 

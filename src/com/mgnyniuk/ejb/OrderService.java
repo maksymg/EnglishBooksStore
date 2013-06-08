@@ -9,15 +9,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.mgnyniuk.jpa.Order;
+import com.mgnyniuk.jpa.OrderItem;
 
 
 @Stateless
 public class OrderService {
 	
-	private List<Order> orderList;
+	private List<OrderItem> orderList;
 	
-	public void add(Order order) {
+	public void add(OrderItem order) {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(
 				"em", map);
@@ -31,13 +31,13 @@ public class OrderService {
 		factory.close();
 	}
 	
-	public List<Order> findOrdersByUser(String username) {
+	public List<OrderItem> findOrdersByUser(String username) {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(
 				"em", map);
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
-		orderList = Order.findOrdersByUser(em, username);
+		orderList = OrderItem.findOrdersByUser(em, username);
 		em.getTransaction().commit();
 		em.close();
 		factory.close();

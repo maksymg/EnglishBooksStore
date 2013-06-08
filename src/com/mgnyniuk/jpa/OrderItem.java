@@ -21,8 +21,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ordertable")
-@NamedQueries(value = { @NamedQuery(name = "Order.findOrdersByUser", query = "select order from Order order where order.user.username = :username") })
-public class Order implements Serializable {
+@NamedQueries(value = {@NamedQuery(name="Order.findOrdersByUser", query = "select ord from OrderItem ord")})
+public class OrderItem implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -39,11 +39,11 @@ public class Order implements Serializable {
 	@ManyToMany
 	private Collection<Book> bookList;
 
-	public Order() {
+	public OrderItem() {
 
 	}
 	
-	public static List<Order> findOrdersByUser(EntityManager em, String username) {
+	public static List<OrderItem> findOrdersByUser(EntityManager em, String username) {
 
 		Query query = em.createNamedQuery("Order.findOrdersByUser");
 		query.setParameter("username", username);
