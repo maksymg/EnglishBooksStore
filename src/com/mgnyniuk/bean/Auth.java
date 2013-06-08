@@ -1,6 +1,8 @@
 package com.mgnyniuk.bean;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -15,7 +17,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.mgnyniuk.ejb.LogService;
 import com.mgnyniuk.ejb.UserService;
+import com.mgnyniuk.jpa.Log;
 import com.mgnyniuk.jpa.User;
 
 @ManagedBean
@@ -26,12 +30,15 @@ public class Auth {
 	private String password;
 	private String originalURL;
 	private UserService userService;
+	private LogService logService;
 
 	@PostConstruct
 	public void init() {
 		try {
 			userService = (UserService) InitialContext
 					.doLookup("java:module/UserService");
+			logService = (LogService) InitialContext
+					.doLookup("java:module/LogService");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,6 +72,8 @@ public class Auth {
 			User user = userService.findUserByName(username);
 			externalContext.getSessionMap().put("user", user);
 			externalContext.redirect(originalURL);
+			logService.add(new Log("User: " + user.getUsername() + " login.",
+					new Timestamp((new Date().getTime()))));
 		} catch (ServletException e) {
 			// Handle unknown username/password in request.login().
 			context.addMessage(null, new FacesMessage("Unknown login"));
@@ -74,18 +83,24 @@ public class Auth {
 	public String logout() {
 		String result = "/index?faces-redirect=true";
 
+		User user = (User) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("user");
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context
 				.getExternalContext().getRequest();
-		HttpSession httpSession = (HttpSession) context.getExternalContext()
-				.getSession(false);
-		httpSession.invalidate();
 
 		try {
 			request.logout();
+			logService.add(new Log(
+					"User: " + (user.getUsername()) + " logout.",
+					new Timestamp((new Date().getTime()))));
 		} catch (ServletException e) {
 			result = "/loginerror?faces-redirect=true";
 		}
+
+		HttpSession httpSession = (HttpSession) context.getExternalContext()
+				.getSession(false);
+		httpSession.invalidate();
 
 		return result;
 	}

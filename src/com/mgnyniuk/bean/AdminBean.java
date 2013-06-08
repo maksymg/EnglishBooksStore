@@ -1,6 +1,8 @@
 package com.mgnyniuk.bean;
 
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -27,6 +29,7 @@ public class AdminBean {
 	private byte[] cover;
 	private BookService bookService;
 	private LogService logService;
+	private List<Log> logs;
 
 	@PostConstruct
 	private void init() {
@@ -35,6 +38,7 @@ public class AdminBean {
 					.doLookup("java:module/BookService");
 			logService = (LogService) InitialContext
 					.doLookup("java:module/LogService");
+			logs = logService.findAllLogs();
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,7 +54,7 @@ public class AdminBean {
 
 	public String add() {
 		bookService.add(title, author, description, price, cover);
-		logService.add(new Log("Book: " + title + " added", new java.sql.Date(
+		logService.add(new Log("Book: " + title + " added", new Timestamp(
 				(new Date().getTime()))));
 		return "index";
 	}
@@ -86,4 +90,13 @@ public class AdminBean {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
+	public List<Log> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(List<Log> logs) {
+		this.logs = logs;
+	}
+	
 }

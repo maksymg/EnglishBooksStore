@@ -118,15 +118,35 @@
 						</p:tab>
 
 						<p:tab id="tab3" title="Accounts Control">
-							
+							<p:dataTable var="log" value="#{adminBean.logs}">
+
+
+							</p:dataTable>
+
 
 						</p:tab>
-						
+
 						<p:tab id="tab4" title="Logs">
-							
+							<p:dataTable var="log" value="#{adminBean.logs}">
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="body" />
+									</f:facet>
+									<h:outputText value="#{log.body}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Date" />
+									</f:facet>
+									<h:outputText value="#{log.date}"/>
+
+								</p:column>
+							</p:dataTable>
 
 						</p:tab>
-						
+
 
 					</p:tabView>
 

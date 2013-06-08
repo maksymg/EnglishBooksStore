@@ -2,14 +2,18 @@ package com.mgnyniuk.jpa;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 @Entity
@@ -25,15 +29,22 @@ public class Log implements Serializable {
 	private String body;
 
 	@Column
-	private Date date;
+	private Timestamp date;
 
 	public Log() {
 
 	}
 
-	public Log(String body, Date date) {
+	public Log(String body, Timestamp date) {
 		this.body = body;
 		this.date = date;
+	}
+	
+	public static List<Log> findAll(EntityManager em) {
+
+		Query query = em.createNamedQuery("Log.findAll");
+
+		return query.getResultList();
 	}
 
 	public String getBody() {
@@ -44,11 +55,11 @@ public class Log implements Serializable {
 		this.body = body;
 	}
 
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 }
