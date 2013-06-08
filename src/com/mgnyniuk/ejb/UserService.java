@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.mgnyniuk.jpa.Group;
 import com.mgnyniuk.jpa.User;
 
 @Stateless
@@ -33,7 +34,9 @@ public class UserService {
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
 		User user = new User(username, password, email);
+		Group group = new Group("users", user);
 		em.persist(user);
+		em.persist(group);
 		em.getTransaction().commit();
 		em.close();
 		factory.close();
