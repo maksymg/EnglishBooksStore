@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ordertable")
-@NamedQueries(value = {@NamedQuery(name="Order.findOrdersByUser", query = "select ord from OrderItem ord")})
+@NamedQueries(value = {@NamedQuery(name="Order.findOrdersByUser", query = "select ord from OrderItem ord where ord.user.username = :username")})
 public class OrderItem implements Serializable {
 
 	@Id

@@ -48,6 +48,51 @@
 							</f:facet>
 							<h:outputText value="#{order.description}" />
 						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Books" />
+							</f:facet>
+							<p:dataTable var="book" value="#{order.bookList}">
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookCover']}" />
+									</f:facet>
+									<p:graphicImage width="100px" value="#{bookImages.image}">
+										<f:param name="id" value="#{book.id}" />
+									</p:graphicImage>
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookTitle']}" />
+									</f:facet>
+									<h:outputText value="#{book.title}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookDescription']}" />
+									</f:facet>
+									<h:outputText value="#{book.description}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookAuthor']}" />
+									</f:facet>
+									<h:outputText value="#{book.author}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="#{i18n['bookPrice']}" />
+									</f:facet>
+									<h:outputText value="#{book.price}" />
+								</p:column>
+
+							</p:dataTable>
+						</p:column>
+
 
 					</p:dataTable>
 
