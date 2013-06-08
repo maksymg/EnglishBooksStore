@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order_book")
 public class OrderBook implements Serializable {
 
 	@Id

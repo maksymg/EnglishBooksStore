@@ -1,21 +1,26 @@
 package com.mgnyniuk.jpa;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "ordertable")
 public class Order implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Column
@@ -25,8 +30,9 @@ public class Order implements Serializable {
 	@JoinColumn(name = "username")
 	private User user;
 
-	@ManyToMany(mappedBy = "orderList", cascade = CascadeType.ALL)
-	private List<Book> bookList = new ArrayList<Book>();
+	@JoinTable(name = "ordertable_book", joinColumns = { @JoinColumn(name = "order_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "book_id", referencedColumnName = "id") })
+	@ManyToMany
+	private Collection<Book> bookList;
 
 	public Order() {
 
@@ -56,13 +62,12 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
-	public List<Book> getBookList() {
+	public Collection<Book> getBookList() {
 		return bookList;
 	}
 
-	public void setBookList(List<Book> bookList) {
+	public void setBookList(Collection<Book> bookList) {
 		this.bookList = bookList;
 	}
-	
-	
+
 }

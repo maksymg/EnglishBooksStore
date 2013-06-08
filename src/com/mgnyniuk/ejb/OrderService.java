@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 import com.mgnyniuk.jpa.Order;
 
+
 @Stateless
 public class OrderService {
 	
@@ -19,6 +20,8 @@ public class OrderService {
 				"em", map);
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();	
+		
+		em.merge(order);
 		em.persist(order);
 		em.getTransaction().commit();
 		em.close();

@@ -1,13 +1,15 @@
 package com.mgnyniuk.jpa;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,10 +20,12 @@ import javax.persistence.Query;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "book")
 @NamedQueries(value = { @NamedQuery(name = "Book.findAll", query = "select bk from Book bk") })
 public class Book implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Column
@@ -39,9 +43,8 @@ public class Book implements Serializable {
 	@Column
 	private byte[] cover;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "book_order", joinColumns = @JoinColumn(name = "bookid", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "orderid", referencedColumnName = "id"))
-	private List<Order> orderList = new ArrayList<Order>();
+	@ManyToMany(mappedBy="bookList", cascade=CascadeType.ALL)
+	private Collection<Order> orderList;
 
 	public Book() {
 
@@ -111,11 +114,11 @@ public class Book implements Serializable {
 		this.description = description;
 	}
 
-	public List<Order> getOrderList() {
+	public Collection<Order> getOrderList() {
 		return orderList;
 	}
 
-	public void setOrderList(List<Order> orderList) {
+	public void setOrderList(Collection<Order> orderList) {
 		this.orderList = orderList;
 	}
 
