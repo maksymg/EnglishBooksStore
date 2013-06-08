@@ -2,10 +2,11 @@ package com.mgnyniuk.jpa;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,10 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ordertable")
+@NamedQueries(value = { @NamedQuery(name = "Order.findOrdersByUser", query = "select order from Order order where order.user.username = :username") })
 public class Order implements Serializable {
 
 	@Id
@@ -36,6 +41,13 @@ public class Order implements Serializable {
 
 	public Order() {
 
+	}
+	
+	public static List<Order> findOrdersByUser(EntityManager em, String username) {
+
+		Query query = em.createNamedQuery("Order.findOrdersByUser");
+		query.setParameter("username", username);
+		return query.getResultList();
 	}
 
 	public int getId() {

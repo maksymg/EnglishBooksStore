@@ -3,6 +3,7 @@ package com.mgnyniuk.bean;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -15,17 +16,25 @@ import com.mgnyniuk.jpa.Order;
 import com.mgnyniuk.jpa.User;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class OrderBean {
 
 	private Order order;
 	private OrderService orderService;
+	private List<Order> ordersByUser;
 
 	@PostConstruct
 	private void init() {
 		try {
 			orderService = (OrderService) InitialContext
 					.doLookup("java:module/OrderService");
+
+			User currentUser = (User) FacesContext.getCurrentInstance()
+					.getExternalContext().getSessionMap().get("user");
+
+			ordersByUser = orderService.findOrdersByUser(currentUser
+					.getUsername());
+
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,6 +49,22 @@ public class OrderBean {
 		order.setDescription("Order");
 		order.setUser(currentUser);
 		orderService.add(order);
+	}
+
+	public void findOrdersByUser(String username) {
+		User currentUser = (User) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("user");
+
+		ordersByUser = orderService.findOrdersByUser(currentUser.getUsername());
+
+	}
+
+	public List<Order> getOrdersByUser() {
+		return ordersByUser;
+	}
+
+	public void setOrdersByUser(List<Order> ordersByUser) {
+		this.ordersByUser = ordersByUser;
 	}
 
 }

@@ -40,6 +40,18 @@
 						</ul>
 					</div>
 				</div>
+				<div class="row-fluid">
+					<p:dataTable var="order" value="#{orderBean.ordersByUser}">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Description" />
+							</f:facet>
+							<h:outputText value="#{order.description}" />
+						</p:column>
+
+					</p:dataTable>
+
+				</div>
 				<div class="row-fluid" style="padding-top: 20px;">
 					<address>
 						<strong>#{i18n['company']}</strong><br />#{i18n['street']}<br />

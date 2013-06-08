@@ -3,7 +3,6 @@ package com.mgnyniuk.bean;
 import java.io.IOException;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,6 +13,7 @@ import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.mgnyniuk.ejb.UserService;
 import com.mgnyniuk.jpa.User;
@@ -77,6 +77,9 @@ public class Auth {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context
 				.getExternalContext().getRequest();
+		HttpSession httpSession = (HttpSession) context.getExternalContext()
+				.getSession(false);
+		httpSession.invalidate();
 
 		try {
 			request.logout();
