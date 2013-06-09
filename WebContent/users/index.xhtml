@@ -44,10 +44,10 @@
 				</div>
 				<div class="row-fluid">
 					<div class="span10">
-					
+
 						<h4>#{i18n['instruction']}</h4>
 						<h5>#{i18n['cost']}</h5>
-						
+
 						<div class="container">
 							<div class="row-fluid">
 								<div class="offset3">
@@ -60,7 +60,8 @@
 														<f:param name="id" value="#{book.id}" />
 													</p:graphicImage>
 													<h:outputText value="#{book.author}" />
-													<p:commandButton value="#{i18n['addToCartButton']}" update="@form"
+													<p:commandButton value="#{i18n['addToCartButton']}"
+														update="@form"
 														actionListener="#{cartBean.addToCart(book)}">
 
 													</p:commandButton>
@@ -69,6 +70,16 @@
 										</p:column>
 									</p:dataGrid>
 								</div>
+								<h:outputText value="Advertisment:"></h:outputText>
+								<BR />
+								<h:outputLink value="http://amazon.com">
+									<h:graphicImage width="200px" library="images"
+										name="amazon.png" />
+								</h:outputLink>
+								<h:outputLink value="http://shop.oreilly.com/">
+									<h:graphicImage width="200px" library="images"
+										name="OReilly.png" />
+								</h:outputLink>
 							</div>
 						</div>
 					</div>
