@@ -23,12 +23,15 @@ public class CartBean {
 	private Cart cart;
 	private Book selectedBook;
 	private LogService logService;
+	private User user;
 
 	@PostConstruct
 	public void init() {
 		try {
 			logService = (LogService) InitialContext
 					.doLookup("java:module/LogService");
+			user = (User) FacesContext.getCurrentInstance()
+					.getExternalContext().getSessionMap().get("user");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,12 +41,16 @@ public class CartBean {
 
 	public void addToCart(Book selectedBook) {
 		cart.getBookList().add(selectedBook);
-		logService.add(new Log("User: "
-				+ ((User) FacesContext.getCurrentInstance()
-						.getExternalContext().getSessionMap().get("user"))
-						.getUsername() + " added to cart " + "\""
-				+ selectedBook.getTitle() + "\"" + " book.", new Timestamp(
-				(new Date().getTime()))));
+		addLog(logService);
+	}
+
+	private void addLog(LogService logService) {
+		if (logService != null) {
+			logService.add(new Log("User: " + user.getUsername()
+					+ " added to cart " + "\"" + selectedBook.getTitle() + "\""
+					+ " book.", new Timestamp((new Date().getTime()))));
+		}
+
 	}
 
 	public void deleteBookFromCart(Book selectedBook) {
@@ -74,6 +81,14 @@ public class CartBean {
 
 	public int getSize() {
 		return cart.getBookList().size();
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
