@@ -9,7 +9,7 @@
 		<link href="../resources/bootstrap/css/bootstrap.min.css"
 			rel="stylesheet" type="text/css" />
 
-		<title>Admin Panel</title>
+		<title>#{i18n['admin']}</title>
 	</h:head>
 	<h:body>
 		<h:form enctype="multipart/form-data">
@@ -36,20 +36,20 @@
 				<div class="row-fluid">
 					<p:tabView id="tabView">
 
-						<p:tab id="tab1" title="Adding Books">
-							<h:outputLabel for="title" value="Title:" />
+						<p:tab id="tab1" title="#{i18n['addingBooks']}">
+							<h:outputLabel for="title" value="#{i18n['bookTitle']}:" />
 							<h:inputText id="title" value="#{adminBean.title}" />
 							<h:message for="title" />
 
-							<h:outputLabel for="author" value="Author:" />
+							<h:outputLabel for="author" value="#{i18n['bookAuthor']}:" />
 							<h:inputText id="author" value="#{adminBean.author}" />
 							<h:message for="author" />
 
-							<h:outputLabel for="description" value="Description:" />
+							<h:outputLabel for="description" value="#{i18n['bookDescription']}:" />
 							<h:inputText id="description" value="#{adminBean.description}" />
 							<h:message for="description" />
 
-							<h:outputLabel for="price" value="Price:" />
+							<h:outputLabel for="price" value="#{i18n['bookPrice']}:" />
 							<h:inputText id="price" value="#{adminBean.price}" />
 							<h:message for="price" />
 
@@ -61,11 +61,11 @@
 							<p:growl id="messages" showDetail="true" />
 
 							<br />
-							<p:commandButton value="Add" action="#{adminBean.add}" />
+							<p:commandButton value="#{i18n['add']}" action="#{adminBean.add}" />
 
 						</p:tab>
 
-						<p:tab id="tab2" title="Cart Control">
+						<p:tab id="tab2" title="#{i18n['cartControl']}">
 							<p:dataTable var="book" value="#{cartBean.cart.bookList}">
 								<p:column>
 									<f:facet name="header">
@@ -117,7 +117,7 @@
 
 						</p:tab>
 
-						<p:tab id="tab3" title="Accounts Control">
+						<p:tab id="tab3" title="#{i18n['accountsControl']}">
 							<p:dataTable var="user" value="#{adminBean.users}">
 								<p:column>
 									<f:facet name="header">
@@ -140,25 +140,25 @@
 
 						</p:tab>
 
-						<p:tab id="tab4" title="Logs">
-							<h:outputText value="Choose date from: " />
+						<p:tab id="tab4" title="#{i18n['logs']}">
+							<h:outputText value="#{i18n['chooseDateFrom']}: " />
 							<p:calendar value="#{adminBean.logsFromDate}" id="popupCalFrom" />
-							<h:outputText value="  To: " />
+							<h:outputText value="  #{i18n['to']} " />
 							<p:calendar value="#{adminBean.logsToDate}" id="popupCalTo" />
-							<p:commandButton value="Refresh"
+							<p:commandButton value="#{i18n['refresh']}"
 								actionListener="#{adminBean.findLogsByPeriod}" update="logs"></p:commandButton>
 							<p:dataTable id="logs" var="log" value="#{adminBean.logs}">
 
 								<p:column>
 									<f:facet name="header">
-										<h:outputText value="body" />
+										<h:outputText value="#{i18n['body']}" />
 									</f:facet>
 									<h:outputText value="#{log.body}" />
 								</p:column>
 
 								<p:column>
 									<f:facet name="header">
-										<h:outputText value="Date" />
+										<h:outputText value="#{i18n['date']}" />
 									</f:facet>
 									<h:outputText value="#{log.date}" />
 

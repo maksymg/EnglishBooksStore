@@ -80,11 +80,15 @@ public class LanguageBean implements Serializable {
 
 			}
 		}
-		logService.add(new Log("User: "
-				+ ((User) FacesContext.getCurrentInstance()
-						.getExternalContext().getSessionMap().get("user"))
-						.getUsername() + " change language to "
-				+ locale.toString(), new Timestamp((new Date().getTime()))));
+		if (FacesContext.getCurrentInstance() == null) {
+			logService
+					.add(new Log("User: "
+							+ ((User) FacesContext.getCurrentInstance()
+									.getExternalContext().getSessionMap()
+									.get("user")).getUsername()
+							+ " change language to " + locale.toString(),
+							new Timestamp((new Date().getTime()))));
+		}
 	}
 
 }

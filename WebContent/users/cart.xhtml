@@ -90,8 +90,9 @@
 						</p:column>
 
 					</p:dataTable>
+					<br />
 
-					<p:commandButton value="Create Order"
+					<p:commandButton value="#{i18n['createOrderButton']}"
 						actionListener="#{orderBean.createOrder(cartBean.cart.bookList)}"
 						update="@form"></p:commandButton>
 				</div>
