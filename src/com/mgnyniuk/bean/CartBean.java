@@ -52,15 +52,19 @@ public class CartBean {
 		}
 
 	}
+	
+	private void deleteLog(LogService logService) {
+		if (logService != null) {
+			logService.add(new Log("User: "
+					+ user.getUsername() + " deleted from cart " + "\""
+					+ selectedBook.getTitle() + "\"" + " book.", new Timestamp(
+					(new Date().getTime()))));
+		}
+	}
 
 	public void deleteBookFromCart(Book selectedBook) {
 		cart.getBookList().remove(selectedBook);
-		logService.add(new Log("User: "
-				+ ((User) FacesContext.getCurrentInstance()
-						.getExternalContext().getSessionMap().get("user"))
-						.getUsername() + " deleted from cart " + "\""
-				+ selectedBook.getTitle() + "\"" + " book.", new Timestamp(
-				(new Date().getTime()))));
+		deleteLog(logService);
 	}
 
 	public Cart getCart() {
