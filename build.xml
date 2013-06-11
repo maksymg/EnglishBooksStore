@@ -3,6 +3,7 @@
 		<junit printsummary="yes" fork="yes" showoutput="true">
 			<classpath>
 				<pathelement location="build/classes" />
+				<pathelement location="build/junit-4.11.jar" />
 				<pathelement path="${java.class.path}" />
 			</classpath>
 			<batchtest fork="yes">
