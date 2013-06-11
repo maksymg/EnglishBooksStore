@@ -1,5 +1,7 @@
-<target>
-	<junit>
-		<test name="com.mgnyniuk.tests.CartTest" />
-	</junit>
-</target>
+<project>
+	<target>
+		<junit>
+			<test name="com.mgnyniuk.tests.CartTest" />
+		</junit>
+	</target>
+</project>
