@@ -2,7 +2,7 @@
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes" showoutput="true">
 			<batchtest todir="${test.results.dir}">
-				<fileset dir="src">
+				<fileset dir="build">
 					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
