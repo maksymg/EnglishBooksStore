@@ -1,9 +1,9 @@
 <project>
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes">
-
-			
-			<test name="com.mgnyniuk.tests.CartTest" />
+			<formatter type="plain" />
+			<test name="com.mgnyniuk.tests.CartTest" outfile="result">
+			</test>
 		</junit>
 	</target>
 </project>
