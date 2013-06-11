@@ -3,11 +3,11 @@
 		<junit printsummary="yes" fork="yes" showoutput="true">
 			<batchtest todir="${test.results.dir}">
 				<fileset dir="build">
-					<include name="**/*Test.java" />
+					<include name="**/*Test" />
 				</fileset>
 			</batchtest>
 			<classpath path="${classes.dir}:${junit.jar}:${test.classes.dir}" />
-			<formatter usefile="false" type="plain" />
+			<formatter usefile="false" type="brief" />
 		</junit>
 	</target>
 </project>
