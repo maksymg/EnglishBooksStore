@@ -1,6 +1,9 @@
 <project>
 	<target name="war-all">
 		<junit>
+			<classpath>
+				<pathelement location="lib/junit.jar"/>
+			</classpath>
 			<test name="com.mgnyniuk.tests.CartTest" />
 		</junit>
 	</target>
