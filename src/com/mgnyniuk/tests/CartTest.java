@@ -33,7 +33,7 @@ public class CartTest {
 		assertTrue(cartBean.getCart().getBookList().size() == 2);
 	}
 	
-	@Test
+	/*@Test
 	public void cartDeleteTest() {
 		Book book1 = new Book("fake", "fake", null, null, null);
 		cartBean.addToCart(book1);
@@ -42,5 +42,5 @@ public class CartTest {
 		
 		// delete one element and must be 1
 		assertTrue(cartBean.getCart().getBookList().size() == 1);
-	}
+	}*/
 }
