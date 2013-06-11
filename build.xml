@@ -1,16 +1,13 @@
 <project>
-	<property name="testdir" value="build" />
-	<path id="classpath.test">
-		<pathelement location="${basedir}/junit-4.10.jar" />
-		<pathelement location="${basedir}" />
-	</path>
-
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes" showoutput="true">
-			<classpath refid="classpath.test" />
+			<classpath>
+				<pathelement location="${build.tests}" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
 			<batchtest fork="yes">
-				<fileset dir="${basedir}">
-					<include name="**/*Test.class" />
+				<fileset dir="src">
+					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
 			<formatter usefile="false" type="brief" />
