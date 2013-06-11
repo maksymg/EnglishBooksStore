@@ -1,5 +1,5 @@
 <project>
-	<target name="test">
+	<target name="war-all">
 		<junit>
 			<test name="com.mgnyniuk.tests.CartTest" />
 		</junit>
