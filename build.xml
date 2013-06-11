@@ -2,7 +2,7 @@
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes">
 
-			<formatter type="plain"/>
+			
 			<test name="com.mgnyniuk.tests.CartTest" />
 		</junit>
 	</target>
