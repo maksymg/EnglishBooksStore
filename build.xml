@@ -3,7 +3,10 @@
 		<junit printsummary="yes" fork="yes" showoutput="true">
 			<!-- <batchtest todir="${test.results.dir}"> <fileset dir="src"> <include 
 				name="**/*Test.java" /> </fileset> </batchtest> -->
-			<classpath path="${classes.dir}:${junit.jar}:${build.classes.dir}" />
+			<classpath>
+				<path refid="classpath-test" />
+				<fileset dir="${testclasses.home}" />
+			</classpath>
 			<formatter usefile="false" type="brief" />
 			<test name="com.mgnyniuk.tests.CarTest" />
 		</junit>
