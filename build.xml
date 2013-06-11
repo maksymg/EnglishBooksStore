@@ -2,12 +2,8 @@
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes">
 
-			<formatter type="plain" />
-			<batchtest fork="yes" todir="${dir.report.unittests.xml}">
-				<fileset dir="src">
-					<include name="**/*Test*.java" />
-				</fileset>
-			</batchtest>
+			<formatter type="plain"/>
+			<test name="com.mgnyniuk.tests.CartTest" />
 		</junit>
 	</target>
 </project>
