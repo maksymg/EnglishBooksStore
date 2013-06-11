@@ -1,13 +1,11 @@
 <project>
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes" showoutput="true">
-			<batchtest todir="${test.results.dir}">
-				<fileset dir="src">
-					<include name="**/*Test.java" />
-				</fileset>
-			</batchtest>
+			<!-- <batchtest todir="${test.results.dir}"> <fileset dir="src"> <include 
+				name="**/*Test.java" /> </fileset> </batchtest> -->
 			<classpath path="${classes.dir}:${junit.jar}:${test.classes.dir}" />
 			<formatter usefile="false" type="brief" />
+			<test name="com.mgnyniuk.CarTest" />
 		</junit>
 	</target>
 </project>
