@@ -5,10 +5,10 @@
 				name="**/*Test.java" /> </fileset> </batchtest> -->
 			<classpath>
 				
-				<fileset dir="build/classes" />
+				<fileset dir="build/classes/com/mgnyniuk/tests" />
 			</classpath>
 			<formatter usefile="false" type="brief" />
-			<test name="com.mgnyniuk.tests.CarTest" />
+			<test name="CarTest" />
 		</junit>
 	</target>
 </project>
