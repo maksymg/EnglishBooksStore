@@ -4,7 +4,7 @@
 			<!-- <batchtest todir="${test.results.dir}"> <fileset dir="src"> <include 
 				name="**/*Test.java" /> </fileset> </batchtest> -->
 			<classpath>
-				<path refid="classpath-test" />
+				
 				<fileset dir="${testclasses.home}" />
 			</classpath>
 			<formatter usefile="false" type="brief" />
