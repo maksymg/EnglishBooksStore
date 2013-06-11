@@ -5,7 +5,7 @@
 				name="**/*Test.java" /> </fileset> </batchtest> -->
 			<classpath path="${classes.dir}:${junit.jar}:${test.classes.dir}" />
 			<formatter usefile="false" type="brief" />
-			<test name="com.mgnyniuk.CarTest" />
+			<test name="com.mgnyniuk.tests.CarTest" />
 		</junit>
 	</target>
 </project>
