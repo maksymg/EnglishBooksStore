@@ -2,7 +2,7 @@
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes" showoutput="true">
 			<classpath>
-				<pathelement location="${build.tests}" />
+				<pathelement location="build/classes" />
 				<pathelement path="${java.class.path}" />
 			</classpath>
 			<batchtest fork="yes">
