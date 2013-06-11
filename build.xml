@@ -1,9 +1,13 @@
 <project>
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes" showoutput="true">
-			<formatter type="plain" />
-			<test name="com.mgnyniuk.tests.CartTest">
-			</test>
+			<batchtest todir="${test.results.dir}">
+				<fileset dir="test">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+			<classpath path="${classes.dir}:${junit.jar}:${test.classes.dir}" />
+			<formatter usefile="false" type="brief" />
 		</junit>
 	</target>
 </project>
