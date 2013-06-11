@@ -1,14 +1,14 @@
 <project>
+    <property name="testbin" value="build"/>
 	<target name="war-all">
 		<junit printsummary="yes" fork="yes" showoutput="true">
-			<!-- <batchtest todir="${test.results.dir}"> <fileset dir="src"> <include 
-				name="**/*Test.java" /> </fileset> </batchtest> -->
-			<classpath>
-				
-				<fileset dir="build/classes/com/mgnyniuk/tests" />
-			</classpath>
+			<batchtest fork="yes">
+				<fileset dir="build">
+					<include name="**/*Test.class" />
+				</fileset>
+			</batchtest>
+			<classpath path="${classes.dir}:${junit.jar}:${test.classes.dir}" />
 			<formatter usefile="false" type="brief" />
-			<test name="CarTest" />
 		</junit>
 	</target>
 </project>
