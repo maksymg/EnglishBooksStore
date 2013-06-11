@@ -1,10 +1,7 @@
 <project>
 	<target name="war-all">
-		<junit printsummary="yes" fork="yes" haltonfailure="yes">
-			<classpath>
-				<pathelement location="${build.tests}" />
-				<pathelement path="${java.class.path}" />
-			</classpath>
+		<junit printsummary="yes" fork="yes">
+
 			<formatter type="plain"/>
 			<test name="com.mgnyniuk.tests.CartTest" />
 		</junit>
