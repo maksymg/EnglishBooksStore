@@ -5,7 +5,7 @@
 				name="**/*Test.java" /> </fileset> </batchtest> -->
 			<classpath>
 				
-				<fileset dir="${testclasses.home}" />
+				<fileset dir="build/classes" />
 			</classpath>
 			<formatter usefile="false" type="brief" />
 			<test name="com.mgnyniuk.tests.CarTest" />
