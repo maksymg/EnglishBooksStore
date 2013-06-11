@@ -7,7 +7,7 @@
 				</fileset>
 			</batchtest>
 			<classpath path="${classes.dir}:${junit.jar}:${test.classes.dir}" />
-			<formatter usefile="false" type="brief" />
+			<formatter usefile="false" type="plain" />
 		</junit>
 	</target>
 </project>
